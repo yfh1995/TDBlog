@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_125314_create_base_user_info_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_125439_create_base_files_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_125539_create_storage_catalogs_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_130108_create_storage_format_group_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_130130_create_storage_formats_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_130206_create_storage_share_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_130324_create_base_permissions_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_131232_create_base_permission_role_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_131437_create_base_permission_user_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_131643_create_base_roles_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_131705_create_base_role_user_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_131752_create_base_configs_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_133359_create_blog_articles_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_133719_create_base_emoticons_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_134044_create_base_emoticon_group_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_140850_create_base_private_letter_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_17_143841_create_storage_user_info_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_18_140726_create_base_permission_dependence_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_20_074456_create_base_modules_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_20_080008_create_base_table_version_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_20_080607_create_base_table_version_changes_table.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/database/migrations/2017_05_20_085712_create_base_resource_table.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

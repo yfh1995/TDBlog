@@ -6,9 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * 基础数据表
  *
- * 用户框架信息表
+ * 记录基础数据表版本情况
  */
-class CreateUsersTable extends Migration
+class CreateBaseTableVersionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,13 +17,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('base_table_version', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->softDeletes();
+            $table->string('table_name')->comment('数据表名');
+            $table->integer('version_code')->default(0)->comment('版本号');
             $table->timestamps();
         });
     }
@@ -35,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('base_table_version');
     }
 }

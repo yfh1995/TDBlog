@@ -6,9 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 /**
  * 基础数据表
  *
- * 用户框架信息表
+ * 网站配置信息
  */
-class CreateUsersTable extends Migration
+class CreateBaseConfigsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,13 +17,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('base_configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->softDeletes();
+            $table->integer('module_id')->comment('模型id');
+            $table->string('key')->unique()->comment('配置键');
+            $table->string('value')->comment('配置值');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('base_configs');
     }
 }

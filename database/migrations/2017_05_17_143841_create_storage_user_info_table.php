@@ -4,11 +4,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * 基础数据表
+ * 云盘模块数据表
  *
- * 用户框架信息表
+ * 用户云盘信息
  */
-class CreateUsersTable extends Migration
+class CreateStorageUserInfoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,12 +17,9 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('storage_user_info', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->bigInteger('used_space')->default(0)->comment('已使用空间');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -35,6 +32,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::drop('storage_user_info');
     }
 }
