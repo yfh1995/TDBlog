@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - TDBlog@localhost" uuid="2028be64-6c38-48bc-a747-64dc2e719d32">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="tdblog"/>
+    <table name="base_configs" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="module_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5qih5Z6LaWQ="/>
+      <column name="key" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6YWN572u6ZSu"/>
+      <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6YWN572u5YC8"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="base_configs_key_unique" unique="true" columns="key"/>
+    </table>
+    <table name="base_emoticon_group" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6KGo5oOF5YyF57uE57uE5ZCN"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5o6S5bqP77yM5ZCM5LiA6KGo5oOF5YyF57uE5LiL5pyJ5pWI"/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5oul5pyJ6ICF77yMMO+8muezu+e7nw=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_emoticons" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5omA5bGe6KGo5oOF5YyF57uE"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6KGo5oOF5ZCN"/>
+      <column name="file_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="6KGo5oOF5Zu+54mHaWQ="/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5o6S5bqP77yM5ZCM5LiA6KGo5oOF5YyF57uE5LiL5pyJ5pWI"/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5oul5pyJ6ICF77yMMO+8muezu+e7nw=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_files" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="path" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5paH5Lu26Lev5b6E"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5paH5Lu25ZCN"/>
+      <column name="size" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="5aSn5bCP"/>
+      <column name="format" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5ZCO57yA5ZCN"/>
+      <column name="md5" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="bWQ15YC8"/>
+      <column name="module_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5qih5Z2XaWQ="/>
+      <column name="download_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5LiL6L296YeP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_modules" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5qih5Z2X5ZCN"/>
+      <column name="icon" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Zu+5qCHaWQ="/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="5o+P6L+w"/>
+      <column name="url" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5qih5Z2X6ZO+5o6l"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_permission_dependence" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5p2D6ZmQaWQ="/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="54i25p2D6ZmQaWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_permission_role" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5p2D6ZmQaWQ="/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="6KeS6ImyaWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_permission_user" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5p2D6ZmQaWQ="/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="55So5oi3aWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_permissions" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="54i25p2D6ZmQaWQ="/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5p2D6ZmQ5ZCN"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5rOo6YeK"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP77yM5ZCM5LiA54i25p2D6ZmQ5LiL5pyJ5pWI"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_private_letter" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="from" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5raI5oGv5Y+R5Ye66ICF"/>
+      <column name="to" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5raI5oGv5o6l5pS26ICF"/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5raI5oGv5qCH6aKY"/>
+      <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1" remarks="5raI5oGv5Li75L2T"/>
+      <column name="type" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" remarks="MO+8muWFqOermeS/oeaBr++8jDHvvJrnp4Hkurrkv6Hmga8="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_resource" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="module_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5qih5Z6LaWQ="/>
+      <column name="key" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6LWE5rqQ5a+55bqU55qE6ZSu"/>
+      <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6LWE5rqQ5a+55bqU55qE5YC8"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="base_resource_key_unique" unique="true" columns="key"/>
+    </table>
+    <table name="base_role_user" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="6KeS6ImyaWQ="/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="55So5oi3aWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_roles" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="54i26KeS6Imy"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6KeS6Imy5ZCN"/>
+      <column name="comment" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5rOo6YeK"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP77yM5ZCM5LiA54i26KeS6Imy5LiL5pyJ5pWI"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_table_version" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="table_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5pWw5o2u6KGo5ZCN"/>
+      <column name="version_code" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="54mI5pys5Y+3"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_table_version_changes" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="old_version_code" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5pen54mI5pys5Y+3"/>
+      <column name="new_version_code" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5paw54mI5pys5Y+3"/>
+      <column name="table_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5Y+R55Sf5pWw5o2u5Y+Y5pu055qE5pWw5o2u6KGo"/>
+      <column name="table_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5YGa5Ye65pS55Y+Y55qE5pWw5o2uaWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="base_user_info" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="55So5oi35ZCN"/>
+      <column name="phone" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="55S16K+d"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="6IGU57O75Zyw5Z2A"/>
+      <column name="avatar" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5aS05YOP"/>
+      <column name="banner" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6IOM5pmv5Zu+"/>
+      <column name="theme" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5Li76aKY"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_approve_and_disapprove" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="55So5oi3aWQ="/>
+      <column name="object_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5pON5L2c5a+56LGhaWTvvIzlr7nosaHkuLrmlofnq6Dml7bvvIzkuLrmlofnq6BpZO+8jOWvueixoeS4uuivhOiuuuaXtu+8jOS4uuivhOiuumlk"/>
+      <column name="type" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" remarks="5pON5L2c57G75Z6L77yMMO+8muaWh+eroOaOqOiNkO+8jDHvvJrmlofnq6DkuI3mjqjojZDvvIwy77ya6K+E6K665o6o6I2Q77yMM++8muivhOiuuuS4jeaOqOiNkA=="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_article_group" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5YiG57G75oul5pyJ6ICFaWQ="/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5paH56ug5YiG57uE5ZCN"/>
+      <column name="article_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5YiG57uE5paH56ug5pWw6YeP"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="5o+P6L+w"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_article_quality" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5pS26JeP6ICFaWQ="/>
+      <column name="article_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5pS26JeP5paH56ugaWQ="/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_articles" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5L2c6ICFaWQ="/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5paH56ug5YiG57uEaWQ="/>
+      <column name="title" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5paH56ug5qCH6aKY"/>
+      <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1" remarks="5YaF5a65"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP"/>
+      <column name="read_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6ZiF6K+76YeP"/>
+      <column name="reply_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5Zue5aSN6YeP"/>
+      <column name="approve_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6LWe5ZCM5pWw"/>
+      <column name="disapprove_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5LiN6LWe5ZCM5pWw"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_replys" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="article_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5paH56ugaWQ="/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Zue5aSN6ICFaWQ="/>
+      <column name="to_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Zue5aSN5a+56LGhaWQ="/>
+      <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1" remarks="5Zue5aSN5YaF5a65"/>
+      <column name="approve_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6LWe5ZCM5pWw"/>
+      <column name="disapprove_amount" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5LiN6LWe5ZCM5pWw"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="blog_user_info" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="article_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5Y+R6KGo5paH56ug5pWw6YeP"/>
+      <column name="reply_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6K+E6K665pWw"/>
+      <column name="received_reply_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6KKr6K+E6K665pWw"/>
+      <column name="read_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="6KKr6ZiF6K+76YeP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="migrations" schema="" catalog="tdblog" type="TABLE">
+      <column name="migration" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="batch" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    </table>
+    <table name="password_resets" schema="" catalog="tdblog" type="TABLE">
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="token" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <index name="password_resets_email_index" unique="false" columns="email"/>
+      <index name="password_resets_token_index" unique="false" columns="token"/>
+    </table>
+    <table name="storage_catalogs" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="owner_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5oul5pyJ6ICFaWQ="/>
+      <column name="parent_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="54i255uu5b2VaWQ="/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="55uu5b2V5ZCN"/>
+      <column name="download_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5LiL6L295pWw6YeP"/>
+      <column name="size" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="LTE=" remarks="55uu5b2V5aSn5bCP"/>
+      <column name="is_file" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="ZmFsc2XvvJrnm67lvZXvvIx0cnVl77ya5paH5Lu2"/>
+      <column name="format" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12" remarks="5qC85byP77yM5aaC77yacG5n77yM6Iul5Li655uu5b2V5YiZ5Li656m6"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="storage_format_group" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5paH5Lu25YiG57G75ZCN"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="storage_formats" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5paH5Lu257G75Z6L5YiG57uEaWQ="/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5qC85byP5ZCN77yM5aaCcG5n"/>
+      <column name="sort" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5o6S5bqP"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="storage_share" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5o+P6L+w"/>
+      <column name="share_code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5YiG5Lqr56CB"/>
+      <column name="catalog_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5YiG5Lqr55uu5b2VaWQ="/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5YiG5Lqr6ICFaWQ="/>
+      <column name="deadline" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="5YiG5Lqr5oiq6Iez5pe26Ze0" version="true"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="storage_user_info" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="used_space" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="MA==" remarks="5bey5L2/55So56m66Ze0"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="users" schema="" catalog="tdblog" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="remember_token" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="users_email_unique" unique="true" columns="email"/>
+    </table>
+  </data-source>
+</component>
