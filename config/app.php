@@ -15,6 +15,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'app_name'  =>  'TDBlog',
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -155,6 +156,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
 
         Arrilot\Widgets\ServiceProvider::class,
