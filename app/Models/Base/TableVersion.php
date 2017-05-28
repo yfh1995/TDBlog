@@ -30,6 +30,7 @@ class TableVersion extends Models{
     public static function updateVersionCache(){
         $version = TableVersion::select(DB::raw('version_code,table_name'))->get();
         Cache::forever(CacheKey::TableVersion,$version->toArray());
+        return $version->toArray();
     }
 
     /**

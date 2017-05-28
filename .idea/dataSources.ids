@@ -14,6 +14,7 @@
       <column name="value" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="6YWN572u5YC8"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA==" remarks="54q25oCB77yMMO+8muW8gOWQr+mFjee9ru+8jDHvvJrlhbPpl63phY3nva4="/>
       <primary-key name="PRIMARY" columns="id"/>
       <index name="base_configs_key_unique" unique="true" columns="key"/>
     </table>
@@ -44,7 +45,6 @@
       <column name="size" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="5aSn5bCP"/>
       <column name="format" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5ZCO57yA5ZCN"/>
       <column name="md5" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="bWQ15YC8"/>
-      <column name="module_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5qih5Z2XaWQ="/>
       <column name="download_num" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA==" remarks="5LiL6L296YeP"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
@@ -297,6 +297,8 @@
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="activation_code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" remarks="5r+A5rS756CB"/>
+      <column name="activated" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="JzAn" remarks="5r+A5rS754q25oCB77yMMO+8muacqua/gOa0u++8jDHvvJrmv4DmtLs="/>
       <column name="remember_token" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>

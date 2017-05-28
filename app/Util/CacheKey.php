@@ -16,4 +16,5 @@ namespace App\Util;
 class CacheKey{
 
     const TableVersion = 'table_version';
+    const BaseConfig = 'base_config';
 }

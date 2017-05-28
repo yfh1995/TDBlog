@@ -9,16 +9,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Base\RoleUser;
 use App\Models\Base\TableVersion;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller{
 
     public function index(){
-//        $data = [
-//            'table_name'    =>  'base_configs',
-//            'ids'           =>  [1,2,3]
-//        ];
-//        dd(TableVersion::edit($data));
-        dd(TableVersion::updateVersionCache());
+//        dd(TableVersion::updateVersionCache());
     }
 }

@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('activation_code')->comment('激活码');
+            $table->tinyInteger('activated')->default(0)->comment('激活状态，0：未激活，1：激活');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

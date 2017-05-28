@@ -22,6 +22,7 @@ class CreateBaseConfigsTable extends Migration
             $table->integer('module_id')->comment('模型id');
             $table->string('key')->unique()->comment('配置键');
             $table->string('value')->comment('配置值');
+            $table->tinyInteger('status')->comment('状态，0：开启配置，1：关闭配置');
             $table->timestamps();
         });
     }

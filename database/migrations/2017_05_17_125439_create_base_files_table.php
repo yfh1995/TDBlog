@@ -24,7 +24,6 @@ class CreateBaseFilesTable extends Migration
             $table->bigInteger('size')->comment('大小');
             $table->string('format')->comment('后缀名');
             $table->string('md5')->comment('md5值');
-            $table->integer('module_id')->comment('模块id');
             $table->integer('download_num')->default(0)->comment('下载量');
             $table->timestamps();
         });

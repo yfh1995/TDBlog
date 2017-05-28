@@ -3,10 +3,21 @@
 namespace App\Models\Base;
 
 use App\Models\Models;
+use App\Util\CacheKey;
+use Illuminate\Support\Facades\Cache;
 
 class Configs extends Models{
 
+    const STATUS_OPEN = 0;  //开启配置
+    const STATUS_CLOSE = 1; //关闭配置
+
     protected $table = 'base_configs';
+
+    public static function getStatusCode($status){
+        if($status == self::STATUS_OPEN) return '开启';
+        else if($status == self::STATUS_CLOSE) return '关闭';
+        else return '未知状态';
+    }
 
     /**
      * @param $data
@@ -16,7 +27,12 @@ class Configs extends Models{
         $this->module_id = $data['module_id'];
         $this->key = $data['key'];
         $this->value = $data['value'];
-        if($this->save()&&$this->updateTableVersion([$this->id])) return $this->id;
+        //更新base_configs表版本
+        if($this->save()&&$this->updateTableVersion([$this->id])){
+            //更新base_configs表缓存
+            $this->updateConfigsCache();
+            return $this->id;
+        }
         return false;
     }
 
@@ -29,7 +45,11 @@ class Configs extends Models{
         $config->module_id = $data['module_id'];
         $config->key = $data['key'];
         $config->value = $data['value'];
-        if($config->save()&&$this->updateTableVersion([$this->id])) return $this->id;
+        if($config->save()&&$this->updateTableVersion([$this->id])){
+            //更新base_configs表缓存
+            $this->updateConfigsCache();
+            return $this->id;
+        }
         return false;
     }
 
@@ -37,9 +57,19 @@ class Configs extends Models{
      * @param $data
      * @return int 返回删除数据数量
      */
-    public function delete($data){
-        if($num = $this->destroy($data)&&$this->updateTableVersion($data)) return $num;
+    public function dele($data){
+        if($num = $this->destroy($data)&&$this->updateTableVersion($data)){
+            //更新base_configs表缓存
+            $this->updateConfigsCache();
+            return $num;
+        }
         return false;
+    }
+
+    public static function updateConfigsCache(){
+        $configs = Configs::where('status',Configs::STATUS_OPEN)->get();
+        Cache::forever(CacheKey::BaseConfig,$configs->toArray());
+        return $configs->toArray();
     }
 
     protected function updateTableVersion($ids){

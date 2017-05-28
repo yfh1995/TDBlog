@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Base\RoleUser;
+use App\Models\Base\UserInfo;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -37,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+//        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -63,10 +65,36 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        if(!isset($data['name'])) $data['name'] = substr($data['email'],0,strrpos($data['email'],'@'));
+
+        $userDate = [
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'activation_code' => $this->createActivationCode($data['email'])
+        ];
+        if(!config('tdblog.email_verification')) $userDate['activated'] = 1;
+
+        $user = User::create($userDate);
+
+        //创建角色表信息
+        RoleUser::create([
+            'role_id'   =>  config('tdblog.Roles.User'),
+            'user_id'   =>  $user->id
         ]);
+
+        //创建基础信息表信息
+        UserInfo::create([
+            'id'    =>  $user->id,
+            'name'  =>  $data['name'],
+            'avatar'    =>  config('tdblog.avatar'),
+            'banner'    =>  config('tdblog.banner'),
+        ]);
+
+        return $user;
+    }
+
+    protected function createActivationCode($str){
+        return md5(time().$str);
     }
 }
