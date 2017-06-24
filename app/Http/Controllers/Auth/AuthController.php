@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Base\RoleUser;
 use App\Models\Base\UserInfo;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -67,6 +68,22 @@ class AuthController extends Controller
     {
         if(!isset($data['name'])) $data['name'] = substr($data['email'],0,strrpos($data['email'],'@'));
 
+        DB::beginTransaction();
+
+        $user = $this->createUser($data);
+        if($user === false) return false;
+
+        //创建角色表信息
+        $roleUser = $this->createRoleUser($user);
+
+        //创建基础信息表信息
+        $userInfo = $this->createUserInfo($data,$user);
+
+        return $user;
+    }
+
+    public function createUser($data){
+
         $userDate = [
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,23 +92,23 @@ class AuthController extends Controller
         ];
         if(!config('tdblog.email_verification')) $userDate['activated'] = 1;
 
-        $user = User::create($userDate);
+        return User::create($userDate);
+    }
 
-        //创建角色表信息
-        RoleUser::create([
+    public function createRoleUser($user){
+        return RoleUser::create([
             'role_id'   =>  config('tdblog.Roles.User'),
             'user_id'   =>  $user->id
         ]);
+    }
 
-        //创建基础信息表信息
-        UserInfo::create([
+    public function createUserInfo($data,$user){
+        return UserInfo::create([
             'id'    =>  $user->id,
             'name'  =>  $data['name'],
             'avatar'    =>  config('tdblog.avatar'),
             'banner'    =>  config('tdblog.banner'),
         ]);
-
-        return $user;
     }
 
     protected function createActivationCode($str){

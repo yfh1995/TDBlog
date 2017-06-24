@@ -1,0 +1,1 @@
+请点击 <a href="{{ url('resetPassword/'.$resetCode) }}">这里</a> 重置您的账号密码
