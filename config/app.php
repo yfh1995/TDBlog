@@ -66,7 +66,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh_CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -160,6 +160,8 @@ return [
 
 
         Arrilot\Widgets\ServiceProvider::class,
+        Encore\Admin\Providers\AdminServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

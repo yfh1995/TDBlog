@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Models\Base;
+namespace App\Models\Admin;
 
 use App\Models\Models;
 use App\Util\CacheKey;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class Configs extends Models{
+
+    const TABLE_VERSION_NO = 1;
 
     const STATUS_OPEN = 0;  //开启配置
     const STATUS_CLOSE = 1; //关闭配置
 
-    protected $table = 'base_configs';
+    protected $table = 'admin_configs';
 
     public static function getStatusCode($status){
         if($status == self::STATUS_OPEN) return '开启';
@@ -24,15 +27,23 @@ class Configs extends Models{
      * @return bool|mixed 成功返回插入数据id，否则返回false
      */
     public function add($data){
+        DB::beginTransaction();
+
+        //添加configs表数据
         $this->module_id = $data['module_id'];
         $this->key = $data['key'];
         $this->value = $data['value'];
-        //更新base_configs表版本
-        if($this->save()&&$this->updateTableVersion([$this->id])){
+        $res_ac = $this->save();
+
+        //更新版本信息
+        $res_atv = $this->updateTableVersion([$this->id]);
+        if($res_ac && $res_atv){
+            DB::commit();
             //更新base_configs表缓存
             $this->updateConfigsCache();
             return $this->id;
         }
+        DB::rollback();
         return false;
     }
 
@@ -41,15 +52,27 @@ class Configs extends Models{
      * @return bool|mixed 成功返回更新数据id，否则返回false
      */
     public function edit($data){
-        $config = Configs::find($data['id']);
+        DB::beginTransaction();
+
+        //更新configs表信息
+        if(!($config = Configs::find($data['id']))){
+            DB::rollback();
+            return false;
+        }
         $config->module_id = $data['module_id'];
         $config->key = $data['key'];
         $config->value = $data['value'];
-        if($config->save()&&$this->updateTableVersion([$this->id])){
+        $res_ac = $config->save();
+
+        //更新版本信息
+        $res_atv = $this->updateTableVersion([$data['id']]);
+        if($res_ac && $res_atv){
+            DB::commit();
             //更新base_configs表缓存
             $this->updateConfigsCache();
-            return $this->id;
+            return $config->id;
         }
+        DB::rollback();
         return false;
     }
 
@@ -58,23 +81,49 @@ class Configs extends Models{
      * @return int 返回删除数据数量
      */
     public function dele($data){
-        if($num = $this->destroy($data)&&$this->updateTableVersion($data)){
+        DB::beginTransaction();
+
+        //删除configs表信息
+        $num = $this->destroy($data);
+
+        //更新版本信息
+        $res_atv = $this->updateTableVersion($data);
+        if($num == count($data) && $res_atv){
+            DB::commit();
             //更新base_configs表缓存
             $this->updateConfigsCache();
             return $num;
         }
+        DB::rollback();
         return false;
     }
 
+    public static function getConfigs(){
+        if(!($configs = Cache::get(CacheKey::AdminConfig))){
+            $configs = Configs::updateConfigsCache();
+        }
+
+        return $configs;
+    }
+
+    /**
+     * 更新configs表缓存信息
+     * @return mixed
+     */
     public static function updateConfigsCache(){
         $configs = Configs::where('status',Configs::STATUS_OPEN)->get();
-        Cache::forever(CacheKey::BaseConfig,$configs->toArray());
+        Cache::forever(CacheKey::AdminConfig,$configs->toArray());
         return $configs->toArray();
     }
 
+    /**
+     * 更新版本信息
+     * @param array $ids
+     * @return mixed
+     */
     protected function updateTableVersion($ids){
-        return TableVersion::add([
-            'table_name'    =>  $this->table,
+        return TableVersion::renew([
+            'table_id'      =>  self::TABLE_VERSION_NO,
             'ids'           =>  $ids
         ]);
     }

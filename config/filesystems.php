@@ -66,6 +66,11 @@ return [
             'driver' => 'local',
             'root' => public_path('uploads'),
         ],
+
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/admin'),
+        ],
     ],
 
 ];

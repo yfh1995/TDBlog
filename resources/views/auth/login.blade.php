@@ -13,13 +13,13 @@
     <form id='login_form' action="" method="post" >
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div id='login_Account' class='form_item'>
-            <input type="text" placeholder="邮箱" required/>
+            <input type="text" placeholder="邮箱" name="email" required/>
             <svg  class="icon" aria-hidden="true">
                 <use xlink:href="#icon-x"></use>
             </svg>
         </div>
         <div id='login_password' class='form_item'>
-            <input type="password" placeholder="密码" required/>
+            <input type="password" placeholder="密码" name="password" required/>
             <svg  class="icon" aria-hidden="true">
                 <use xlink:href="#icon-x"></use>
             </svg>
@@ -67,7 +67,7 @@
 
 <!--不通用-->
 <script src='{{asset('js/login.js')}}'></script>
-<script type="text/javascript" src="{{ asset('asset/js/alert.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/alert.js') }}"></script>
 <script>
     $(function(){
         var messages_cnt = parseInt("{{ count($errors) }}");

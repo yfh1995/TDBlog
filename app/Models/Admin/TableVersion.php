@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Base;
+namespace App\Models\Admin;
 
 use App\Models\Models;
 use App\Util\CacheKey;
@@ -17,9 +17,9 @@ class TableVersion extends Models{
      * @return mixed
      */
     public static function getVersionData(){
-        if(!($codes = Cache::get(CacheKey::TableVersion))){
+        if(!($codes = Cache::get(CacheKey::AdminTableVersion))){
             TableVersion::updateVersionCache();
-            $codes = Cache::get(CacheKey::TableVersion);
+            $codes = Cache::get(CacheKey::AdminTableVersion);
         }
         return $codes;
     }
@@ -29,7 +29,7 @@ class TableVersion extends Models{
      */
     public static function updateVersionCache(){
         $version = TableVersion::select(DB::raw('version_code,table_name'))->get();
-        Cache::forever(CacheKey::TableVersion,$version->toArray());
+        Cache::forever(CacheKey::AdminTableVersion,$version->toArray());
         return $version->toArray();
     }
 
@@ -37,14 +37,14 @@ class TableVersion extends Models{
      *  更新基础配置数据表版本信息
      *  传入格式：
      *  [
-     *      'table_name'=>'table_name', //数据变更的数据表名
+     *      'table_id'=>'1',            //数据变更的数据表id
      *      'ids'=>[1,2,3]              //数据变更id
      *  ]
      * @param $data
      * @return mixed
      */
-    public static function edit($data){
-        $tableVersion = TableVersion::where('table_name',$data['table_name'])->first();
+    public static function renew($data){
+        $tableVersion = TableVersion::find($data['table_id']);
         $tableVersion->version_code++;
         $rs_tv = $tableVersion->save();
         if($rs_tv) {

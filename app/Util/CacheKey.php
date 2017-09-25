@@ -15,6 +15,15 @@ namespace App\Util;
  */
 class CacheKey{
 
-    const TableVersion = 'table_version';
-    const BaseConfig = 'base_config';
+    const AdminTableVersion = 'admin_table_version';
+    const AdminConfig = 'admin_config';
+    const AdminMenu = 'admin_menu';
+    const AdminModules = 'admin_modules';
+    const AdminPermissions = 'admin_permissions';
+    const AdminResource = 'admin_resource';
+    const AdminRoles = 'admin_roles';
+    const AdminRoleMenu = 'admin_role_menu';
+    const AdminRolePermissions = 'admin_role_permission';
+    const AdminRoleUser = 'admin_role_user';
+    const AdminUserPermissions = 'admin_user_permissions';
 }
