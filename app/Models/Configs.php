@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 use App\Models\Models;
 use App\Util\CacheKey;

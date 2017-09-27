@@ -6,14 +6,14 @@
  * Time: 12:05
  */
 
-namespace App\Models\Base;
+namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
 
 class Files extends Model{
 
-    protected $table = 'base_files';
+    protected $table = 'admin_files';
 
     public function add($data){
         $this->path = $data['path'];

@@ -6,7 +6,7 @@
  * Time: 13:41
  */
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 
 use App\Models\Models;

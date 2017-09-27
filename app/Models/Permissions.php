@@ -6,12 +6,13 @@
  * Time: 16:50
  */
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 
 use App\Models\Models;
 use App\User;
 use App\Util\CacheKey;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -122,18 +123,19 @@ class Permissions extends Models{
     }
 
     /**
-     * 根据用户id获取用户权限
-     * @param $id
-     * @return array
+     * 检查指定用户是否拥有指定权限
+     * @param integer $uid
+     * @param array $needSlugs
+     * @return bool
      */
-    public static function getPermissionsById($id){
-        $res = User::with('permissions','roles.rolePermissions')->find($id);
-        foreach ($res->permissions as $v)
-            $ids[$v->slug] = $v->id;
-        foreach ($res->roles->rolePermissions as $v)
-            if(!isset($ids[$v->slug]))
-                $ids[$v->slug] = $v->id;
-        $ids = [];
-        return $ids;
+    public static function checkHavePermissions($uid, $needSlugs){
+        $haveSlugs = getPermissionsById($uid);
+
+        foreach ($needSlugs as $v){
+            if(!isset($haveSlugs[$v])) {
+                return false;
+            }
+        }
+        return true;
     }
 }

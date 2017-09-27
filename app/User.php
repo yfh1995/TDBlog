@@ -2,8 +2,8 @@
 
 namespace App;
 
-use App\Models\Admin\Permissions;
-use App\Models\Admin\Roles;
+use App\Models\Permissions;
+use App\Models\Roles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -33,6 +33,36 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * 根据用户id获取用户角色
+     * @param $id
+     * @return array
+     */
+    public static function getRolesById($id){
+        $res = User::with('roles')->find($id);
+        $ids = [];
+        foreach ($res->roles as $v){
+            $ids[$v->slug] = $v->id;
+        }
+        return $ids;
+    }
+
+    /**
+     * 根据用户id获取用户权限
+     * @param $id
+     * @return array
+     */
+    public static function getPermissionsById($id){
+        $res = User::with('permissions','roles.permissions')->find($id);
+        $ids = [];
+        foreach ($res->permissions as $v)
+            $ids[$v->slug] = $v->id;
+        foreach ($res->roles as $v)
+            foreach ($v->permissions as $val)
+                if(!isset($ids[$val->slug]))
+                    $ids[$val->slug] = $val->id;
+        return $ids;
+    }
 
     //==========================================================================================
     //=================================模型关联=================================================
@@ -43,7 +73,7 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles(){
-        return $this->belongsToMany(Roles::class,'admin_role_user','user_id','role_id');
+        return $this->belongsToMany(Roles::class,'admin_role_users','user_id','role_id');
     }
 
     /**

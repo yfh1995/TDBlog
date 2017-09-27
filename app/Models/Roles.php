@@ -6,10 +6,11 @@
  * Time: 17:39
  */
 
-namespace App\Models\Admin;
+namespace App\Models;
 
 
 use App\Models\Models;
+use App\User;
 use App\Util\CacheKey;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -127,10 +128,18 @@ class Roles extends Models {
     //==========================================================================================
 
     /**
-     * 关联：角色-权限映射
+     * 关联：角色-权限
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function rolePermissions(){
+    public function permissions(){
         return $this->belongsToMany(Permissions::class,'admin_role_permissions','role_id','permission_id');
+    }
+
+    /**
+     * 关联：角色-用户
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function user(){
+        return $this->belongsToMany(User::class,'admin_role_users','role_id','user_id');
     }
 }
