@@ -21,7 +21,7 @@ class ComposerServiceProvider extends ServiceProvider{
     public function boot()
     {
         // 使用对象型态的视图组件...
-        view()->composer('backend.includes.menu', 'App\Http\ViewComposers\Backend\Base\MenuComposer');
+        view()->composer('backend.includes.menu', 'App\Http\ViewComposers\MenuComposer');
     }
 
     /**

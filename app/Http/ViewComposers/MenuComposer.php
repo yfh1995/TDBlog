@@ -6,13 +6,13 @@
  * Time: 23:12
  */
 
-namespace App\Http\ViewComposer\Backend\Base;
+namespace App\Http\ViewComposer;
 
 use Illuminate\Contracts\View\View;
 
 class MenuComposer {
 
     public function compose(View $view){
-
+        
     }
 }
