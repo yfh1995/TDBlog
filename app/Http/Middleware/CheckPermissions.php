@@ -30,7 +30,7 @@ class CheckPermissions
 
         foreach ($needSlugs as $v){
             if(!isset($haveSlugs[$v])) {
-                return back()->withErrors(['title'=> multilingual('prompt.警告'), 'message'=>multilingual('prompt.您的权限不足，缺少权限：') . $v]);
+                return back()->withErrors(['title'=> multilingual('prompt.notice'), 'message'=>multilingual('prompt.lack_permission:') . $v]);
             }
         }
         return $next($request);

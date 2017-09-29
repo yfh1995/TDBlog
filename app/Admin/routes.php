@@ -12,4 +12,10 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    //配置管理
+    $router->resource('auth/configs','ConfigController');
+
+    //文件管理
+    $router->resource('auth/files','FileController');
+
 });
