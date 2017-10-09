@@ -8,6 +8,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facade\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class CheckPermissions
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string  $needPers
+     * @param  string  $needSlugs
      * @return mixed
      */
     public function handle($request, Closure $next, $needSlugs = '')
@@ -26,7 +27,7 @@ class CheckPermissions
         $needSlugs = explode('|',$needSlugs);
 
         if(Auth::guard(config('admin.prefix'))->guest()) return redirect()->guest('login');
-        $haveSlugs = getPermissionsById(Auth::guard(config('admin.prefix'))->user()->id);
+        $haveSlugs = User::permissions();
 
         foreach ($needSlugs as $v){
             if(!isset($haveSlugs[$v])) {

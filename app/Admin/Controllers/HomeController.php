@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Facade\User;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Column;
@@ -111,5 +112,9 @@ class HomeController extends Controller
 
             $content->row((new Box('Table', new Table($headers, $rows)))->style('info')->solid());
         });
+    }
+
+    public function test(){
+        return view('backend.index.index')->withErrors(['11','22']);
     }
 }

@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Permissions;
 use App\Models\Roles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -32,6 +33,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function user(){
+        return Auth::guard(config('admin.prefix'))->user();
+    }
 
     /**
      * 根据用户id获取用户角色

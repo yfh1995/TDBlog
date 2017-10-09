@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>@yield('title', app_name())</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        @yield('meta')
+<head>
+    <meta charset="UTF-8">
+    <title>@yield('title', app_name())</title>
+    @yield('meta')
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/blockUI/jquery_blockUI.js')}}" ></script>
+    <script type="text/javascript" src="{{asset('js/popup.js')}}" ></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}" ></script>
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/popup.css')}}" />
+    @yield('style')
+</head>
+<body>
 
-        {{--@yield('before-style')--}}
-        {{--<link rel="stylesheet" type="text/css" href="{{ asset('css/Backstage.css') }}"/>--}}
-        {{--@yield('after-style')--}}
+    {{--@include('includes.messages')--}}
+    @include('backend.includes.header')
+    @include('backend.includes.menu')
 
-        @yield('style')
-    </head>
+    @yield('content')
 
-    <body>
+    @yield('before-script')
+    @yield('after-script')
 
-        @include('includes.messages')
-        @include('backend.includes.header')
-        @include('backend.includes.menu)
+</body>
 
-        @yield('content')
+<script>
 
-        @yield('before-script')
-        <script type="text/javascript" src="{{ asset('js/jquery-2.1.0.js') }}"></script>
-        @yield('after-script')
-        @yield('message-script')
-    </body>
+    @if(count($errors))
+        var errors = '';
+
+        @foreach($errors->all() as $error)
+            errors += "<p>{{ $error }}</p>";
+        @endforeach
+
+        commonPop.showTips({
+            title:'提示',
+            body:errors,
+            cancelBtn:true,
+            okBtnCallBcak:function(e, parObj){
+                /*点击确定的回调方法*/
+                $.unblockUI();
+            }
+        });
+    @endif
+
+</script>
+
 </html>

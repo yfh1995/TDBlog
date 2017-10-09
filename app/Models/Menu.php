@@ -121,8 +121,19 @@ class Menu extends Models {
      * @return mixed
      */
     public function updateMenuCache(){
-        $configs = Menu::get()->toArray();
+        $configs = Menu::all()->toArray();
         Cache::forever(CacheKey::AdminMenu,$configs);
         return $configs;
+    }
+
+    /**
+     * 获取树形化的菜单数组
+     * @return array
+     */
+    public function getMenu(){
+        if(!($menu = Cache::get(CacheKey::AdminMenu))){
+            $menu = $this->updateMenuCache();
+        }
+        return convertToTreeStructure($menu,'parent_id','id','children',0);
     }
 }

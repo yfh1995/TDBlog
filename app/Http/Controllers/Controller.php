@@ -18,7 +18,7 @@ class Controller extends BaseController {
 
     public function __construct(){
 
-        if(! $this->configs = Cache::get(CacheKey::AdminConfig)){
+        if(!($this->configs = Cache::get(CacheKey::AdminConfig))){
             $this->configs = Configs::updateConfigsCache();
         }
     }

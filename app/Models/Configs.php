@@ -11,8 +11,8 @@ class Configs extends Models{
 
     const TABLE_VERSION_NO = 1;
 
-    const STATUS_OPEN = 0;  //开启配置
-    const STATUS_CLOSE = 1; //关闭配置
+    const STATUS_CLOSE = 0;  //关闭配置
+    const STATUS_OPEN = 1; //开启配置
 
     protected $table = 'admin_configs';
 
@@ -111,9 +111,9 @@ class Configs extends Models{
      * @return mixed
      */
     public static function updateConfigsCache(){
-        $configs = Configs::where('status',Configs::STATUS_OPEN)->get();
-        Cache::forever(CacheKey::AdminConfig,$configs->toArray());
-        return $configs->toArray();
+        $configs = Configs::where('status',Configs::STATUS_OPEN)->get()->toArray();
+        Cache::forever(CacheKey::AdminConfig,$configs);
+        return $configs;
     }
 
     /**

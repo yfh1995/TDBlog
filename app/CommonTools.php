@@ -65,4 +65,28 @@ class CommonTools{
     public static function multilingual($word){
         return Lang::has($word) ? Lang::get($word) : '未查询到此翻译';
     }
+
+    /**
+     * 将数组转换成树形化结构
+     * @param array $array          需要树形化的数组
+     * @param string $sonKey        子节点需要与父节点关联的字段名
+     * @param string $fatherKey     父节点需要与子节点关联的字段名
+     * @param string $sonArrayKey   自定义的子树在父节点中的字段名
+     * @param integer $start        起始父节点字段值
+     * @return array
+     */
+    public static function convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start){
+        if(!is_array($array)) return [];
+
+        $result = [];
+        foreach ($array as $v){
+            if($v[$sonKey] == $start) {
+                if(!empty($sons = CommonTools::convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$v[$fatherKey]))){
+                    $v[$sonArrayKey] = $sons;
+                }
+                $result[] = $v;
+            }
+        }
+        return $result;
+    }
 }

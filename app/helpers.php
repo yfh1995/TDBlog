@@ -13,6 +13,18 @@ if (! function_exists('app_name')) {
     }
 }
 
+if (! function_exists('user')) {
+    /**
+     * Helper to grab the application name
+     *
+     * @return mixed
+     */
+    function user()
+    {
+        return \App\User::user();
+    }
+}
+
 if (! function_exists('getPermissionsById')) {
     /**
      * 根据用户id获取用户所有权限
@@ -70,5 +82,17 @@ if (! function_exists('multilingual')) {
     function multilingual($word)
     {
         return \App\CommonTools::multilingual($word);
+    }
+}
+
+if (! function_exists('convertToTreeStructure')) {
+    /**
+     * 将数组转换成树形化结构
+     *
+     * @return array
+     */
+    function convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start)
+    {
+        return \App\CommonTools::convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start);
     }
 }

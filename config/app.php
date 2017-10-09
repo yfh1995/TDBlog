@@ -162,6 +162,7 @@ return [
         Arrilot\Widgets\ServiceProvider::class,
         Encore\Admin\Providers\AdminServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        App\Providers\UserProvider::class,
     ],
 
     /*
@@ -210,6 +211,7 @@ return [
 
         'Widget'       => Arrilot\Widgets\Facade::class,
         'AsyncWidget'  => Arrilot\Widgets\AsyncFacade::class,
+        'User'  =>  App\Util\User::class,
     ],
 
 ];

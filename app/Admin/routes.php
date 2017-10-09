@@ -12,6 +12,8 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    $router->get('/test','HomeController@test');
+
     //配置管理
     $router->resource('auth/configs','ConfigController');
 

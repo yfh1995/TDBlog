@@ -8,6 +8,28 @@
 
 return [
 
+    'global'    =>  [
+
+        'title' =>  config('app_name','TDBlog')
+    ],
+
+    'header'    =>  [
+
+        'set'   => '设置',
+        'logout'=>  '登出'
+    ],
+
+    'menu'  =>  [
+
+        'online'    =>  '在线',
+        'menu'      =>  '菜单'
+    ],
+
+    'index' =>  [
+
+        'title' =>  '后台首页'
+    ],
+
     'configs'   =>  [
 
         'title' =>  '配置',
