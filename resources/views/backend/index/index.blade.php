@@ -8,14 +8,26 @@
 
 @endsection
 
-@section('after-script')
+{{--@section('content-title', multilingual('backend.index.title'))--}}
 
-    <script type="text/javascript" src="{{ asset('js/index.js') }}" ></script>
+{{--@section('content-description', multilingual('backend.index.title'))--}}
 
-@endsection
+@section('content-title', 'Dashboard')
+
+@section('content-description', 'Description...')
 
 @section('content')
 
-    <h1>Hello World!</h1>
+    <div class="col-md-12">
+        <div class="box">
+            <div style="height: 100px"></div>
+        </div>
+    </div>
+
+@endsection
+
+@section('after-script')
+
+    <script type="text/javascript" src="{{ asset('js/index.js') }}" ></script>
 
 @endsection

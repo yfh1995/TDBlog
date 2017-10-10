@@ -115,6 +115,6 @@ class HomeController extends Controller
     }
 
     public function test(){
-        return view('backend.index.index')->withErrors(['11','22']);
+        return view('backend.index.index');
     }
 }

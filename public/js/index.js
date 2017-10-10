@@ -6,9 +6,22 @@ $(function(){
 		$leftMune = $(".main-sidebar"),
 		$logo = $(".logo");
 	
-	
+	$(window).resize(function(){
+		if( $(window).width() > 768 ) {
+			$(".content-wrapper").removeClass("short");
+			$(".content-wrapper").removeClass("long");
+			if($leftMune.width() == 50){
+				$(".content-wrapper").addClass("smallcont");
+			}
+			$leftMune.removeClass("smallshrink");
+		}else{
+			$(".content-wrapper").removeClass("smallcont");
+			
+			$leftMune.removeClass("smallshrink");
+		}
+	});
 	//左侧菜单收缩
-	$muneShrink.on("click",function(){
+	$muneShrink.on("click",function(){	
 		if($(window).width() > 768){
 			if($leftMune.hasClass("shrink") && $logo.hasClass("shrink")){
 				$(".sidebar-menu li.menu-header").removeClass("hide");
@@ -18,6 +31,7 @@ $(function(){
 				$logo.removeClass("shrink");
 				$(".logo-min").hide();
 				$(".logo-lg").show();	
+				$(".content-wrapper").removeClass("smallcont");
 			}else{
 				$(".sidebar-menu li.menu-header").addClass("hide");
 				$(".sidebar-menu>li>.treeview-menu").addClass("hide");
@@ -26,30 +40,37 @@ $(function(){
 				$logo.addClass("shrink");
 				$(".logo-min").show();
 				$(".logo-lg").hide();	
+				$(".content-wrapper").addClass("smallcont");
 			}	
 		}else{
 			if($leftMune.hasClass("smallshrink")){
 				$leftMune.removeClass("smallshrink");	
+				//$(".content-wrapper").removeClass("smallcont");
+				if($leftMune.width() == 50){
+					$(".content-wrapper").removeClass("short");
+				}else{
+					$(".content-wrapper").removeClass("long");
+				}
 			}else{
 				$leftMune.addClass("smallshrink");
+				//$(".content-wrapper").addClass("smallcont");
+				if($leftMune.width() == 50){
+					$(".content-wrapper").addClass("short");
+				}else{
+					$(".content-wrapper").addClass("long");
+				}
 			}
 		}
-//		if($leftMune.width() == 230){
-			$muneLi.hover(function(){
-				if($leftMune.width() == 50){
-					$(this).find($(".shrinkhide")).addClass("suspension");
-					$(this).find($(".sidebar-menu>li>.treeview-menu")).addClass("suscontent");
-					$(this).find($(".sidebar-menu>li>.treeview-menu>li .treeview-menu")).addClass("suscont");
-				}
-			},function(){
-				$(this).find($(".shrinkhide")).removeClass("suspension");
-				$(this).find($(".sidebar-menu>li>.treeview-menu")).removeClass("suscontent");
-				$(this).find($(".sidebar-menu>li>.treeview-menu>li .treeview-menu")).removeClass("suscont");
-			})
-//		}else{
-//			$muneLi.find($(".shrinkhide")).removeClass("suspension");
-//			$muneLi.find($(".treeview-menu")).removeClass("suscontent")
-//		}
+
+		$muneLi.hover(function(){
+			if($leftMune.width() == 50){
+				$(this).find($(".shrinkhide")).addClass("suspension");
+				$(this).find($(".sidebar-menu>li>.treeview-menu")).addClass("suscontent");
+			}
+		},function(){
+			$(this).find($(".shrinkhide")).removeClass("suspension");
+			$(this).find($(".sidebar-menu>li>.treeview-menu")).removeClass("suscontent");
+		})
 	})
 	
 	// 菜单具体内容显示隐藏
@@ -102,6 +123,17 @@ $(function(){
 			$(".dropdown-menu").hide();
 		}
 	})
-	
+
+	/*
+	 *
+	 * 请注意，以下位置有菜鸡出没
+	 *
+	 */
+
+	//内容区高度自适应
+    $('.content').css('min-height',$(window).height() - $('.header').outerHeight() - $('.content-header').outerHeight());
+	$(window).resize(function(){
+		$('.content').css('min-height',$(window).height() - $('.header').outerHeight() - $('.content-header').outerHeight());
+	});
 
 })

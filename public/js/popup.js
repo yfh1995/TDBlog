@@ -1,4 +1,4 @@
-
+// $(function(){
 	var commonPop = {
 		
 		showTips : function(data){
@@ -13,7 +13,7 @@
                 zindex : data.zindex || 9999,
                 cancelBtn : data.cancelBtn || false,
                 cancelBtnText : data.cancelBtnText || "取消",
-                okBtnCallBcak : data.okBtnCallBcak || false,
+                okBtnCallBack : data.okBtnCallBack || false,
                 okBtnText : data.okBtnText || "确定",
                 onShow : data.onShow,
                 onClose : data.onClose,
@@ -48,12 +48,12 @@
             }
 
             // 取消和确定按钮
-            if (config.cancelBtn && config.okBtnCallBcak) {
+            if (config.cancelBtn && config.okBtnCallBack) {
                 html.push('<div class="gb-modaldialog-btnwrap twobtn">');
             }else{
                 html.push('<div class="gb-modaldialog-btnwrap">');
             }
-            if (config.okBtnCallBcak) {
+            if (config.okBtnCallBack) {
                 html.push('<em><span id="js-gb-modaldialog-okbtn" class="btnok">' + config.okBtnText + '</span></em>');
             }
             if (config.cancelBtn) {
@@ -105,10 +105,10 @@
 
             // 确定按钮事件
             $("#js-gb-modaldialog-okbtn").click(function(e){
-                if (config.okBtnCallBcak) {
-                	console.log(config.okBtnCallBcak + 'config.okBtnCallBcak');
+                if (config.okBtnCallBack) {
+                	console.log(config.okBtnCallBack + 'config.okBtnCallBack');
                     var $parentObj = $(this).parents(".gb-modaldialog");
-                    config.okBtnCallBcak(e, $parentObj,$.unblockUI,config.id);
+                    config.okBtnCallBack(e, $parentObj,$.unblockUI,config.id);
                 }
             });
 
@@ -127,3 +127,4 @@
         }
 	};
 	
+// })
