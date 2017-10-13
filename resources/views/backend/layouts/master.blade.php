@@ -9,7 +9,7 @@
     <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}" ></script>
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('css/popup.css')}}" />
-    <link rel="stylesheet" href="{{asset('css/content.css')}}" />
+    <link rel="stylesheet" href="{{ asset('css/backend/index.css') }}" />
     @yield('style')
 </head>
 <body id="body">
@@ -38,6 +38,7 @@
     </div>
 
     @yield('before-script')
+    <script type="text/javascript" src="{{ asset('js/backend/index.js') }}" ></script>
     <script type="text/javascript" src="{{asset('js/blockUI/jquery_blockUI.js')}}" ></script>
     <script type="text/javascript" src="{{asset('js/popup.js')}}" ></script>
     @yield('after-script')

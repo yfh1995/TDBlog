@@ -3,7 +3,9 @@
 namespace App\Admin\Controllers;
 
 use App\Facade\User;
+use App\Grid;
 use App\Http\Controllers\Controller;
+use App\Models\Permissions;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
@@ -19,6 +21,7 @@ use Encore\Admin\Widgets\Collapse;
 use Encore\Admin\Widgets\InfoBox;
 use Encore\Admin\Widgets\Tab;
 use Encore\Admin\Widgets\Table;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -115,6 +118,7 @@ class HomeController extends Controller
     }
 
     public function test(){
-        return view('backend.index.index');
+        $permissions = Permissions::paginate(10);
+        return view('backend.index.index')->with(['permissions'   =>  $permissions]);
     }
 }

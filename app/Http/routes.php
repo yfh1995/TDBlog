@@ -39,6 +39,7 @@
             return view('welcome');
         });
 
+        Route::get('/permissions','TestController@permissions');
 
     });
 //});

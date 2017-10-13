@@ -1,0 +1,53 @@
+.box{
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+}
+
+.box-header{
+    padding: 10px;
+    display: block;
+    position: relative;
+}
+
+.box-title{
+    display: inline-block;
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+}
+
+.search-input{
+    height: 30px;
+    vertical-align: middle;
+}
+
+.box-body{
+    padding: 0px;
+}
+
+.box-body>table{
+    margin-bottom: 0px;
+}
+
+.box-footer{
+    padding: 15px 10px 10px 10px;
+    border-top: 1px solid #dddddd;
+    vertical-align: middle;
+}
+
+.box-footer>span,label{
+    font-weight: 100;
+    margin-bottom: 0px;
+}
+
+.box-footer>label{
+    text-align:right;
+    margin:0px auto 0px auto;
+}
+
+.pagination{
+    margin: 0px;
+    font-size: 12px;
+}

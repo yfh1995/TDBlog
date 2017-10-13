@@ -70,5 +70,13 @@ return [
         'created_at'    =>  '创建时间',
         'updated_at'    =>  '更新时间',
 
+    ],
+
+    'permissions'   =>  [
+
+        'name'      =>  '权限名',
+        'slug'      =>  '标识',
+        'created_at'=>  '创建时间',
+        'updated_at'=>  '更新时间'
     ]
 ];
