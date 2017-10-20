@@ -9,23 +9,13 @@
 namespace App\Widgets;
 
 
+use Illuminate\Support\Facades\DB;
+
 class Grid {
 
     //统一开关定义
     const CLOSE = 0;
     const OPEN = 1;
-
-    //字段正序排列
-    const SORT_RULE_ACS = 0;
-    //字段逆序排列
-    const SORT_RULE_DECS = 1;
-    //字段原生排列
-    const SORT_RULE_ORIGINAL = 2;
-
-    //字段显示方式-text
-    const SHOW_TYPE_TEXT = 0;
-    //字段显示方式-label
-    const SHOW_TYPE_LABEL = 1;
 
     // 操作列列名
     const OPERATION = 'widgets.operation';
@@ -60,12 +50,18 @@ class Grid {
     // 编辑地址
     public $editUrl;
 
+    // 搜索表名
+    public $table;
+    // 排序规则
+    public $order;
     // 搜索参数
     public $params;
     // 输入框提示
     public $placeholder;
     // 表头数组
     public $title;
+    // 需要显示的字段数组
+    public $field;
     // 分页尺寸
     public $pageSize;
     // 默认分页尺寸
@@ -76,7 +72,7 @@ class Grid {
      * 初始化默认参数
      * Grid constructor.
      */
-    public function __construct(){
+    public function __construct($table){
 
         $this->operation = self::OPERATION;
         $this->editBtn = self::OPEN;
@@ -91,15 +87,11 @@ class Grid {
         $this->addUrl = dirname('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]).'/add';
         $this->editUrl = dirname('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]).'/edit';
 
+        $this->table = $table;
         $this->params = [];
         $this->placeholder = 'Id';
-        $this->title = [
-            [
-                'showName'  =>  'Id',
-                'fieldName' =>  'id',
-                'sortRule'  =>  self::SORT_RULE_ACS
-            ]
-        ];
+        $this->title = [];
+        $this->field = [];
         $this->pageSize = $this->defaultPageSize;
     }
 
@@ -129,19 +121,25 @@ class Grid {
 
     /**
      * 初始化列表显示字段信息
-     * @param array $title  所要显示字段数组
-     * @param string $sort  url中的排序字符串参数
+     * @param array $rows   \App\Widgets\Row 类数组，定义表列数据
      */
-    public function initTitle($title = [],$sort = ''){
+    public function initTitle($rows = []){
+        foreach ($rows as $v){
+            $this->field[] = $v->fieldName;
+            $this->title[] = $v->render();
+        }
+    }
+
+    /**
+     * 将搜索参数嵌入表头
+     * @param string $sort
+     */
+    public function updateTitleParams($sort = ''){
         $sorts = $this->analysisSortString($sort);
-        foreach ($title as $v){
-            $one = [];
-            $one['showName'] = $v['showName'];
-            $one['fieldName'] = $v['fieldName'];
-            if(isset($sorts[$v])){
-                $one['sortRule'] = $sorts[$v];
+        foreach ($this->title as $k=>$v){
+            if($v['isSort'] == $this::OPEN && isset($sorts[$v['showName']])){
+                $this->title[$k] = $sort[$v['showName']];
             }
-            $this->title[] = $one;
         }
     }
 
@@ -197,7 +195,18 @@ class Grid {
             'placeholder'   =>  $this->placeholder,
             'title'         =>  $this->title,
             'pageSize'      =>  $this->pageSize,
+            'data'          =>  $this->data()
         ];
+    }
+
+    public function data(){
+        $model = DB::table($this->table)
+            ->select(DB::raw(implode(',',$this->field)));
+
+        foreach ($this->order as $k=>$v)
+            $model->orderBy($k,$v);
+
+        return $model->paginate(isset($this->pageSize[0])?$this->pageSize[0]:$this->defaultPageSize[0]);
     }
 
 }
