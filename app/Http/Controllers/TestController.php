@@ -25,21 +25,20 @@ class TestController extends Controller{
         $params = $request->all();
 
         $permissions = Permissions::paginate(10);
-        $config = new Grid('admin_users');
-        $config->initParams($params);
-        $config->initPageSize([5,10,15,20]);
-        $config->initPlaceholder('Id');
-        $config->initTitle([
-            (new Row('id','ID'))->sort()->render(),
-            (new Row('name',multilingual('backend.permissions.name')))->render(),
-            (new Row('slug',multilingual('backend.permissions.slug')))->render(),
-            (new Row('created_at',multilingual('backend.permissions.created_at')))->render(),
-            (new Row('updated_at',multilingual('backend.permissions.updated_at')))->render()
+        $grid = new Grid('admin_permissions');
+        $grid->initParams($params);
+        $grid->initPageSize([5,10,15,20]);
+        $grid->initPlaceholder('Id');
+        $grid->initTitle([
+            (new Row('id','ID'))->sort(),
+            (new Row('name',multilingual('backend.permissions.name'))),
+            (new Row('slug',multilingual('backend.permissions.slug'))),
+            (new Row('created_at',multilingual('backend.permissions.created_at'))),
+            (new Row('updated_at',multilingual('backend.permissions.updated_at')))
         ]);
-        $config->updateTitleParams($params['sort']);
-        return view('backend.index.index')->with([
-            'data'  =>  $permissions,
-            'grid'  =>  $config->render()
-        ]);
+        if(isset($params['sort'])) {
+            $grid->updateTitleParams($params['sort']);
+        }
+        return view('backend.index.index')->with($grid->render());
     }
 }

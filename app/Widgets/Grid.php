@@ -88,6 +88,7 @@ class Grid {
         $this->editUrl = dirname('http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"]).'/edit';
 
         $this->table = $table;
+        $this->order = [];
         $this->params = [];
         $this->placeholder = 'Id';
         $this->title = [];
@@ -178,24 +179,26 @@ class Grid {
     public function render(){
 
         return [
-            'operation'     =>  $this->operation,
-            'editBtn'       =>  $this->editBtn,
-            'deleteBtn'     =>  $this->deleteBtn,
-            'batchDeleteBtn'=>  $this->batchDeleteBtn,
-            'addBtn'        =>  $this->addBtn,
-            'refreshBtn'    =>  $this->refreshBtn,
+            'grid' => [
+                'operation'     =>  $this->operation,
+                'editBtn'       =>  $this->editBtn,
+                'deleteBtn'     =>  $this->deleteBtn,
+                'batchDeleteBtn'=>  $this->batchDeleteBtn,
+                'addBtn'        =>  $this->addBtn,
+                'refreshBtn'    =>  $this->refreshBtn,
 
-            'searchUrl'     =>  $this->searchUrl,
-            'refreshUrl'    =>  $this->refreshUrl,
-            'deleteUrl'     =>  $this->deleteUrl,
-            'addUrl'        =>  $this->addUrl,
-            'editUrl'       =>  $this->editUrl,
+                'searchUrl'     =>  $this->searchUrl,
+                'refreshUrl'    =>  $this->refreshUrl,
+                'deleteUrl'     =>  $this->deleteUrl,
+                'addUrl'        =>  $this->addUrl,
+                'editUrl'       =>  $this->editUrl,
 
-            'params'        =>  $this->params,
-            'placeholder'   =>  $this->placeholder,
-            'title'         =>  $this->title,
-            'pageSize'      =>  $this->pageSize,
-            'data'          =>  $this->data()
+                'params'        =>  $this->params,
+                'placeholder'   =>  $this->placeholder,
+                'title'         =>  $this->title,
+                'pageSize'      =>  $this->pageSize,
+                'data'          =>  $this->data()
+            ]
         ];
     }
 

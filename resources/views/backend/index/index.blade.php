@@ -8,7 +8,4 @@
 
 
 
-@include('widgets.grid',[
-    'data'  =>  $data,
-    'grid'  =>  $grid
-])
+@include('widgets.grid',['grid' =>  $grid])
