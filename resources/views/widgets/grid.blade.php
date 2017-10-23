@@ -18,7 +18,7 @@
                 @endif
                 <div class="pull-right">
                     <form action="{{$grid['searchUrl']}}" method="GET" class="">
-                        <input type="text" class="search-input" placeholder="{{ $grid['placeholder'] }}" name="key" value="{{ $grid['params']['key'] }}">
+                        <input type="text" class="search-input" placeholder="{{ $grid['placeholder'] }}" name="key" value="{{ isset($grid['params']['key'])?$grid['params']['key']:'' }}">
                         @foreach($grid['params'] as $k=>$v)
                             <input type="text" class="hidden" name="{{ $k }}" value="{{ $v }}">
                         @endforeach
