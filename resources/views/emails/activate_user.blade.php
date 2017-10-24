@@ -1,1 +1,0 @@
-请点击 <a href="{{ url('activate/'.$activation_code) }}">这里</a> 激活您的账号
