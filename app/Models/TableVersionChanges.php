@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\CommonTools;
+use App\Models\Models;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class TableVersionChanges extends Model {
+class TableVersionChanges extends Models{
 
     protected $table = 'base_table_version_changes';
 
@@ -66,10 +67,10 @@ class TableVersionChanges extends Model {
             ->lists('table_id');
         if(!$table_ids) return false;
 
-        $data = DB::table($table_name)->whereIn('id',$table_ids)->get()->toArray();
+        $data = DB::table($table_name)->whereIn('id',$table_ids)->get();
         if(!$data) return false;
 
-        return $data;
+        return CommonTools::object_to_array($data);
     }
 
     /**
