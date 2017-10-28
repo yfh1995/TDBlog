@@ -23,11 +23,15 @@ class AuthController extends Controller {
         if(!$this->loginValidation($request)) return;
         $params = $request->all();
 
-        $user = User::where('email',$params['email'])->find();
+        $isReal = Tool::checkSequenceAndVoucher($params['sequence'],$params['voucher'],$params['email']);
+        if(!$isReal) return Tool::apiOutput(Codes::LOGIN_VOUCHER_EXPIRED_OR_ERROR);
+
+        $user = User::where('email',$params['email'])->first();
         if(isset($user->id) && $user = Auth::loginUsingId($user->id)){
-
+            $user['token'] = $user->createToken(app_name())->accessToken;
+            return Tool::apiOutput(Codes::SUCCESS,$user);
         }else{
-
+            return Tool::apiOutput(Codes::LOGIN_FAIL);
         }
     }
 

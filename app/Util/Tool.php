@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Lang;
 
 class Tool {
 
-    public static function apiOutput($code, $data){
+    public static function apiOutput($code, $data = ''){
 
         header('Content-type:text/json;charset=utf-8');
 
         $return['code'] = $code;
         $return['msg'] = Codes::$MSG[$code];
         $return['data'] = $data;
-        echo json_encode($return);
+        return json_encode($return);
     }
 
     /**
@@ -103,10 +103,17 @@ class Tool {
         return $result;
     }
 
+    /**
+     * 验证用户凭证
+     * @param $sequence
+     * @param $voucher
+     * @param $email
+     * @return bool
+     */
     public static function checkSequenceAndVoucher($sequence, $voucher, $email){
 
         //获取验证合法时长
-        $lawfulTime = config('TDBlog.lawfulTime');
+        $lawfulTime = config('TDConfig.lawfulTime');
         //获取序列码长度
         $seqLen = config('TDConfig.seqLen');
         //获取盐值映射表
@@ -119,9 +126,10 @@ class Tool {
         }
 
         //在合法尝试次数内，验证凭证
+        $data[] = $lawfulTime;
         for($i=0;$i<$lawfulTime;$i++){
-            $tryOne = $str . ((int)(time()/10)*10) . $email . config('TDConfig.password');
-            if($voucher === bcrypt($tryOne)){
+            $tryOne = $str . ((int)(time()/10)*10-$i*10) . $email . config('TDConfig.password');
+            if($voucher === hash('sha256',$tryOne)){
                 return true;
             }
         }

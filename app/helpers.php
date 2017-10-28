@@ -75,7 +75,7 @@ if (! function_exists('getIntersectionInTwoArray')) {
      */
     function getIntersectionInTwoArray($a,$b)
     {
-        return \App\CommonTools::getIntersectionInTwoArray($a,$b);
+        return \App\Util\Tool::getIntersectionInTwoArray($a,$b);
     }
 }
 
@@ -87,7 +87,7 @@ if (! function_exists('multilingual')) {
      */
     function multilingual($word)
     {
-        return \App\CommonTools::multilingual($word);
+        return \App\Util\Tool::multilingual($word);
     }
 }
 
@@ -99,6 +99,6 @@ if (! function_exists('convertToTreeStructure')) {
      */
     function convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start)
     {
-        return \App\CommonTools::convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start);
+        return \App\Util\Tool::convertToTreeStructure($array,$sonKey,$fatherKey,$sonArrayKey,$start);
     }
 }
