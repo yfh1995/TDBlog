@@ -4,3 +4,5 @@
 2.复制.env.example为.env，并配置数据库参数；
 
 3.根目录下进入命令行键入：php artisan passport:install；
+
+4.（可选，配合postman）配置服务器虚拟主机地址为www.tdblog.com，并配置hosts；
