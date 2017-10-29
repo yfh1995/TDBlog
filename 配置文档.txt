@@ -1,0 +1,6 @@
+
+1.导入passport项目根目录下tdblog.sql数据库文件（passport中导入过就无需再导）；
+
+2.复制.env.example为.env，并配置数据库参数；
+
+3.根目录下进入命令行键入：php artisan passport:install；
