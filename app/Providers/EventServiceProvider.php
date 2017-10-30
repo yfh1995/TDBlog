@@ -16,6 +16,11 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+
+        //登录监听
+        'App\Events\Login' => [
+            'App\Listeners\LoginListener',
+        ]
     ];
 
     /**
