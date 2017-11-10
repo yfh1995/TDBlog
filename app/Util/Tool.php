@@ -24,6 +24,14 @@ class Tool {
     }
 
     /**
+     * 获取验证码
+     * @return int
+     */
+    public static function getVerificationCode(){
+        return rand(100000,999999);
+    }
+
+    /**
      * 获取数组最深维度数
      * @param $array
      * @return int
