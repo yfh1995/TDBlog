@@ -11,15 +11,17 @@ namespace App\Models;
 
 use App\Models\Models;
 use App\Util\CacheKey;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class RolePermissions extends Models {
+class RolePermissions extends Model {
 
     //当前表在版本控制中的id
     const TABLE_VERSION_NO = 1;
 
-    protected $table = 'admin_role_permissions';
+    protected $table = TablesName::ADMIN_ROLE_PERMISSIONS;
 
     /**
      * 添加一条角色权限关联信息

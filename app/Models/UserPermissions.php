@@ -9,17 +9,18 @@
 namespace App\Models;
 
 
-use App\Models\Models;
 use App\Util\CacheKey;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class UserPermissions extends Models {
+class UserPermissions extends Model {
 
     //当前表在版本控制中的id
     const TABLE_VERSION_NO = 1;
 
-    protected $table = 'admin_user_permissions';
+    protected $table = TablesName::ADMIN_USER_PERMISSIONS;
 
     /**
      * 添加一条用户权限映射信息

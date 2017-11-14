@@ -12,15 +12,17 @@ namespace App\Models;
 use App\Models\Models;
 use App\User;
 use App\Util\CacheKey;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class RoleUser extends Models {
+class RoleUser extends Model {
 
     //当前表在版本控制中的id
     const TABLE_VERSION_NO = 1;
 
-    protected $table = 'admin_role_users';
+    protected $table = TablesName::ADMIN_ROLE_USERS;
 
     /**
      * 添加一条角色用户关联信息

@@ -32,6 +32,7 @@ class AuthController extends Controller {
         if($res !== true) return $res;
         $params = $request->all();
 
+        //验证用户登录凭证
         $isReal = Tool::checkSequenceAndVoucher($params['sequence'],$params['voucher'],$params['email']);
         if(!$isReal) return Tool::apiOutput(Codes::LOGIN_VOUCHER_EXPIRED_OR_ERROR);
 
@@ -46,7 +47,6 @@ class AuthController extends Controller {
         }else{
             //打印错误日志
             Log::error('用户凭证验证成功，登录失败，用户id：',isset($user->id)?$user->id:'');
-
             return Tool::apiOutput(Codes::LOGIN_FAIL);
         }
     }

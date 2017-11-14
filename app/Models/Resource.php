@@ -9,17 +9,18 @@
 namespace App\Models;
 
 
-use App\Models\Models;
 use App\Util\CacheKey;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class Resource extends Models{
+class Resource extends Model {
 
     //当前表在版本控制中的id
     const TABLE_VERSION_NO = 1;
 
-    protected $table = 'admin_resource';
+    protected $table = TablesName::ADMIN_RESOURCE;
 
     /**
      * 添加一条模块资源信息

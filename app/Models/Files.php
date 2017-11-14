@@ -9,6 +9,7 @@
 namespace App\Models;
 
 
+use App\Util\TablesName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Files extends Model{
 
-    protected $table = 'admin_files';
+    protected $table = TablesName::ADMIN_FILES;
 
     public function add($data){
         $this->path = $data['path'];

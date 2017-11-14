@@ -9,12 +9,13 @@
 namespace App\Models;
 
 
+use App\Util\TablesName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class Emoticons extends Model {
 
-    public $table = 'admin_emoticons';
+    public $table = TablesName::ADMIN_EMOTICONS;
 
     public function add($data){
 

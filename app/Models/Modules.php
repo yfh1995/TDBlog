@@ -9,17 +9,18 @@
 namespace App\Models;
 
 
-use App\Models\Models;
 use App\Util\CacheKey;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
-class Modules extends Models {
+class Modules extends Model {
 
     //当前表在版本控制中的id
     const TABLE_VERSION_NO = 1;
 
-    protected $table = 'admin_modules';
+    protected $table = TablesName::ADMIN_MODULES;
 
     /**
      * 添加一条模块信息

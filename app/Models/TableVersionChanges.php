@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\CommonTools;
 use App\Models\Models;
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class TableVersionChanges extends Models{
+class TableVersionChanges extends Model {
 
-    protected $table = 'base_table_version_changes';
+    protected $table = TablesName::BASE_TABLE_VERSION_CHANGES;
 
     /**
      * 校验数据表版本信息，发现非法数据返回false，否则返回需要更新的数据

@@ -9,8 +9,11 @@
 namespace App\Models;
 
 
-class PasswordReset extends Models{
+use App\Util\TablesName;
+use Illuminate\Database\Eloquent\Model;
 
-    protected $table = 'password_resets';
+class PasswordReset extends Model {
+
+    protected $table = TablesName::PASSWORD_RESETS;
 
 }
