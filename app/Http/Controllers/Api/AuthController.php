@@ -23,9 +23,40 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller {
 
     /**
-     * 用户登录
-     * @param Request $request
-     * @return string
+     * @SWG\Post(
+     *     path="/api/login",
+     *     tags={"Auth"},
+     *     summary="用户登录接口",
+     *     description="",
+     *     operationId="base-auth-login",
+     *     produces={"application/xml", "application/json"},
+     *     @SWG\Parameter(
+     *         name="email",
+     *         description="邮箱",
+     *         required=true,
+     *         type="string",
+     *         format="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="sequence",
+     *         description="序列号",
+     *         required=true,
+     *         type="string",
+     *         format="string"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="voucher",
+     *         description="登录凭证",
+     *         required=true,
+     *         type="string",
+     *         format="string"
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="请求成功",
+     *         @SWG\Schema(ref="#/definitions/login")
+     *     )
+     * )
      */
     public function login(Request $request){
         $res = $this->loginValidation($request);
@@ -36,7 +67,7 @@ class AuthController extends Controller {
         $isReal = Tool::checkSequenceAndVoucher($params['sequence'],$params['voucher'],$params['email']);
         if(!$isReal) return Tool::apiOutput(Codes::LOGIN_VOUCHER_EXPIRED_OR_ERROR);
 
-        $user = User::where('email',$params['email'])->first();
+        $user = User::where('email',$params['email'])->first(['username','name','email','phone','avatar']);
         if(isset($user->id) && $user = Auth::loginUsingId($user->id)){
 
             //触发用户登录事件
@@ -78,5 +109,46 @@ class AuthController extends Controller {
         return true;
     }
 
+    /**
+     * @SWG\Definition(
+     *     definition="login",
+     *     type="object",
+     *     required={"username","name","email","phone","avatar","token"},
+     *     @SWG\Property(
+     *         property="username",
+     *         type="string"
+     *     ),
+     *     @SWG\Property(
+     *         property="name",
+     *         type="string",
+     *         description="昵称"
+     *     ),
+     *     @SWG\Property(
+     *         property="username",
+     *         type="string",
+     *         description="真实名字"
+     *     ),
+     *     @SWG\Property(
+     *         property="email",
+     *         type="string",
+     *         description="邮箱"
+     *     ),
+     *     @SWG\Property(
+     *         property="phone",
+     *         type="string",
+     *         description="电话"
+     *     ),
+     *     @SWG\Property(
+     *         property="avatar",
+     *         type="string",
+     *         description="头像"
+     *     ),
+     *     @SWG\Property(
+     *         property="token",
+     *         type="string",
+     *         description="令牌"
+     *     )
+     * )
+     */
 
 }

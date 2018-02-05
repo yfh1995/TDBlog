@@ -9,16 +9,26 @@
 namespace App\Http\Controllers\Api;
 
 
-use App\Configs;
 use App\Http\Controllers\Controller;
+use App\Models\Configs;
 use App\Util\Codes;
 use App\Util\Tool;
 
 class ToolController extends Controller {
 
     /**
-     * 强制更新后台configs缓存
-     * @return string
+     * @SWG\Post(
+     *     path="/api/tool/updateBackendConfigsCache",
+     *     tags={"Tool"},
+     *     summary="强制更新后台configs缓存",
+     *     description="",
+     *     operationId="base-tool-login",
+     *     produces={"application/xml", "application/json"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="请求成功"
+     *     )
+     * )
      */
     public function updateBackendConfigsCache(){
         Configs::updateConfigsCache();
