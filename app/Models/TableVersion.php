@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class TableVersion extends Model {
 
-    protected $table = TablesName::BASE_TABLE_VERSION;
+    protected $table = TablesName::ADMIN_TABLE_VERSION;
 
 
     /**
@@ -19,8 +19,7 @@ class TableVersion extends Model {
      */
     public static function getVersionData(){
         if(!($codes = Cache::get(CacheKey::AdminTableVersion))){
-            TableVersion::updateVersionCache();
-            $codes = Cache::get(CacheKey::AdminTableVersion);
+            $codes = TableVersion::updateVersionCache();
         }
         return $codes;
     }

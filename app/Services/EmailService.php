@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class Email {
+class EmailService {
 
     //账号注册邮件
     const REGISTER_EMAIL = 1;
@@ -54,23 +54,25 @@ class Email {
 
         //获取参数
         $params = $request->only(['email','emailType']);
+        $key = $params['email'].self::$emailConfig[$params['emailType']]['cacheKey'];
+        $time = self::$emailConfig[$params['emailType']]['cacheTime']/60;
 
         //防止重复发送
-        if(Cache::get($params['email'].self::$emailConfig[$params['emailType']]['cacheKey'])){
-            return $this->returnData(Codes::CANNOT_SEND_EMAIL_WITHIN_TIME,Codes::$MSG[Codes::CANNOT_SEND_EMAIL_WITHIN_TIME]);
+        if(Cache::get($key)){
+            return Tool::withinOutput(Codes::CANNOT_SEND_EMAIL_WITHIN_TIME,Codes::$MSG[Codes::CANNOT_SEND_EMAIL_WITHIN_TIME]);
         }
 
         //刷新缓存
-        Cache::put($params['email'].self::$emailConfig[$params['emailType']]['cacheKey'],true,self::$emailConfig[$params['emailType']]['cacheTime']/60);
+        CacheService::refreshEmailCycle($key,$time);
 
         switch ($params['emailType']){
             // 1.用户注册时获取验证码邮件
             case self::REGISTER_EMAIL:
                 $code = $this->sendRegisterEmail($params['email']);
-                $res = $this->returnData($code,Codes::$MSG[$code]);
+                $res = Tool::withinOutput($code,Codes::$MSG[$code]);
                 break;
             default:
-                $res = $this->returnData(Codes::PARAMS_ERROR,Codes::$MSG[Codes::PARAMS_ERROR]);
+                $res = Tool::withinOutput(Codes::PARAMS_ERROR,Codes::$MSG[Codes::PARAMS_ERROR]);
                 break;
         }
 
@@ -80,20 +82,6 @@ class Email {
         }
 
         return $res;
-    }
-
-    /**
-     * 规定服务返回数据格式
-     * @param int $code
-     * @param string $data
-     * @return array
-     */
-    private function returnData($code, $data = ''){
-
-        return [
-            'code'  =>  $code,
-            'data'  =>  $data
-        ];
     }
 
     /**
@@ -116,7 +104,7 @@ class Email {
         ]);
 
         if ($validator->fails()) {
-            return $this->returnData(Codes::PARAMS_ERROR,$validator->errors()->all());
+            return Tool::withinOutput(Codes::PARAMS_ERROR,$validator->errors()->all());
         }
         return true;
     }
@@ -127,7 +115,7 @@ class Email {
      * @return int
      */
     private function sendRegisterEmail($email){
-        $code = VerificationCode::getVerificationCode(VerificationCode::REGISTER_CODE, $email);
+        $code = VerificationCodeService::getVerificationCode(VerificationCodeService::REGISTER_CODE, $email);
         if($code['code'] != Codes::SUCCESS) return $code['code'];
 
         Mail::to($email)->queue(new RegisterEmail($code['vCode']));

@@ -1,51 +1,41 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## 项目说明
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+#### 文件结构说明
 
-## About Laravel
+- App\Util文件夹包含：
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+    1. CacheKey：所有存储于缓存中的键值。常驻数据严格以CacheKey中的常量作为键，
+    非常驻数据（如：邮件发送周期限制缓存则CacheKey+其他信息组成缓存键）；
+    
+    2. Codes：项目所有错误码及错误提示均定义在此处，包含对外错误码、对内错误码；
+    
+    3. TablesName:配置了项目所有数据表；
+    
+    4. Tool：一些通用工具方法；
+    
+- App\Services文件夹包含：
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    1. CacheService：所有常驻、非数据表的缓存操作都在此处处理；
+    
+    2. EmailService：所有邮件发送操作都在此处处理；
+    
+    3. PusherService：所有广播推送操作都在此处处理；
+    
+    4. VerificationCodeService：所有验证码操作都在此处理；
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
-## Learning Laravel
+#### 功能说明
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
-
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- 缓存
+    1. 本项目缓存包含两部分，一部分为非常驻缓存（如：邮件、手机验证码发送周期控制，
+    此部分缓存具有时效性），另一部分为常驻缓存（如：数据表、排行榜等）；
+    
+    2. 非常驻缓存没有纳入统一管理，缓存代码位置请跟踪代码；
+    
+    3. 常驻缓存分为两部分，一部分为数据表缓存，此部分缓存读取、设置位于各自模型中，
+    另一部分为非数据表缓存（如：排行榜缓存），此部分缓存读取、设置位于服务CacheService
+    中。
+    
+- 版本控制
+    1. 版本控制位于VersionController，依赖于缓存服务，版本控制分为两部分，一为零散缓存
+    ，一为数据表缓存（包含受版本控制的数据表缓存和不受版本控制的数据表缓存）。

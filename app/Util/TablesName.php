@@ -38,9 +38,11 @@ class TablesName {
 
     const ADMIN_USER_PERMISSIONS = 'admin_user_permissions';
 
-    const BASE_TABLE_VERSION = 'base_table_version';
+    const ADMIN_TABLE_VERSION = 'admin_table_version';
 
-    const BASE_TABLE_VERSION_CHANGES = 'base_table_version_changes';
+    const ADMIN_TABLE_VERSION_CHANGES = 'admin_table_version_changes';
+
+    const ADMIN_CHANNEL_EVENT = 'admin_channel_event';
 
     const PASSWORD_RESETS = 'password_resets';
 

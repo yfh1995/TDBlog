@@ -20,7 +20,12 @@ class EventServiceProvider extends ServiceProvider
         //登录监听
         'App\Events\Login' => [
             'App\Listeners\LoginListener',
-        ]
+        ],
+
+        //广播监听
+        'App\Events\Pusher' => [
+            'App\Listeners\PusherListener',
+        ],
     ];
 
     /**

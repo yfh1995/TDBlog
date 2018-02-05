@@ -12,6 +12,10 @@ return [
     'voucher'   =>  '凭证',
     'verificationCode'  =>  '短信验证码',
     'emailType' =>  '邮件类型',
+    'channel'   =>  '通道',
+    'event'     =>  '事件',
+    'version_code'  =>  '版本号',
+    'cache_keys'=>  '缓存键',
 
     'valRequired'   =>  '是必填的',
     'valEmail'      =>  '不符合邮箱格式',

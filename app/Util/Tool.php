@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Lang;
 
 class Tool {
 
+    /**
+     * 接口输出数据结构
+     *
+     * @param int $code     错误码
+     * @param string $data  错误信息
+     *
+     * @return string
+     */
     public static function apiOutput($code, $data = ''){
 
         header('Content-type:text/json;charset=utf-8');
@@ -21,6 +29,21 @@ class Tool {
         $return['msg'] = Codes::$MSG[$code];
         $return['data'] = $data;
         return json_encode($return);
+    }
+
+    /**
+     * 内部传值数据结构
+     *
+     * @param int $code     错误码
+     * @param string $data  错误信息
+     *
+     * @return array
+     */
+    public static function withinOutput($code, $data = ''){
+        return [
+            'code'  =>  $code,
+            'data'  =>  $data
+        ];
     }
 
     /**
@@ -211,6 +234,17 @@ class Tool {
             'sequence'  =>  $sequence,
             'voucher'      =>  $voucher
         ];
+    }
+
+    /**
+     * 获取类的常量
+     * @param $class
+     * @return array
+     */
+    public static function getClassConstants($class)
+    {
+        $reflect = new \ReflectionClass(get_class($class));
+        return $reflect->getConstants();
     }
 
 }

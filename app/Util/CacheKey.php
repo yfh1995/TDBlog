@@ -15,25 +15,38 @@ namespace App\Util;
  */
 class CacheKey{
 
-    //数据表在缓存中的键
+    //=================================常驻缓存数据键值=======================================
+    //=================================常驻缓存数据键值=======================================
+    //=================================常驻缓存数据键值=======================================
 
-    const AdminTableVersion = 'admin_table_version';
-    const AdminConfig = 'admin_config';
-    const AdminMenu = 'admin_menu';
-    const AdminModules = 'admin_modules';
-    const AdminPermissions = 'admin_permissions';
-    const AdminResource = 'admin_resource';
-    const AdminRoles = 'admin_roles';
-    const AdminRoleMenu = 'admin_role_menu';
-    const AdminRolePermissions = 'admin_role_permission';
-    const AdminRoleUser = 'admin_role_user';
-    const AdminUserPermissions = 'admin_user_permissions';
+    //常驻的数据表缓存，处理分散于各模型
 
-    //邮件在缓存中的键
+    const AdminTableVersion = 'admin_table_version';                    //表版本表
+    const AdminConfig = 'admin_config';                                 //配置表
+    const AdminMenu = 'admin_menu';                                     //菜单表
+    const AdminModules = 'admin_modules';                               //模块表
+    const AdminResource = 'admin_resource';                             //资源表
+    const AdminChannelEvent = 'admin_channel_event';                    //广播渠道表
 
-    const EmailRegister = 'email_register';
 
-    //验证码在缓存中的键
+    ////常驻的非表数据缓存，处理集中于CacheService，前缀为scattered
 
-    const CodeRegister = 'code_register';
+
+
+    //=================================非常驻缓存数据键值=======================================
+    //=================================非常驻缓存数据键值=======================================
+    //=================================非常驻缓存数据键值=======================================
+
+    //非常驻数据缓存，处理集中于服务CacheService，前缀为temporary
+
+
+    //邮件缓存，处理集中于服务EmailService
+
+    const EmailRegister = 'temporary_email_register';
+
+
+    //验证码缓存，处理集中于服务VerificationCodeService
+
+    const CodeRegister = 'temporary_code_register';
+
 }

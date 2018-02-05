@@ -2,21 +2,21 @@
 
 namespace App\Models;
 
-use App\CommonTools;
-use App\Models\Models;
+use App\Util\Codes;
 use App\Util\TablesName;
+use App\Util\Tool;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TableVersionChanges extends Model {
 
-    protected $table = TablesName::BASE_TABLE_VERSION_CHANGES;
+    protected $table = TablesName::ADMIN_TABLE_VERSION_CHANGES;
 
     /**
      * 校验数据表版本信息，发现非法数据返回false，否则返回需要更新的数据
-     * @param $data         版本字符串，格式：0,1,0,4,5.....，对应表顺序默认与数据库存储顺序一致
-     * @return array|bool   返回更新数据格式：
+     * @param string $versionCode   版本字符串，格式：0,1,0,4,5.....，对应表顺序默认与数据库存储顺序一致
+     * @return array                返回更新数据格式：
      * [
      *      'table_name':[
      *          ['id'=>1,'name'=>2.....],
@@ -28,29 +28,29 @@ class TableVersionChanges extends Model {
      *      ],
      * ]
      */
-    public static function getVersionTableData($data){
-        $old_codes = explode(',',$data);
+    public static function getVersionTableData($versionCode){
+        $old_codes = explode(',',$versionCode);
 
         //获取数据表版本信息
         $new_codes = TableVersion::getVersionData();
 
         $change_data = [];
         foreach($new_codes as $k=>$v){
-            if($v['version_code']<$old_codes[$k]['version_code']) return false;
-            else if($v['version_code']>$old_codes[$k]['version_code'])
-                $change_data[$v['table_name']] = TableVersionChanges::getOneVersionTableSomeData($v['table_name'],$old_codes[$k]['version_code']+1,$v['version_code']);
+            if(!isset($old_codes[$k]['version_code']) || $v['version_code']>$old_codes[$k]['version_code']){
+                $change_data[$v['table_name']] = TableVersionChanges::getOneVersionTableData($v['table_name'],$old_codes[$k]['version_code']+1,$v['version_code']);
+            }
         }
-        return $change_data;
+        return Tool::withinOutput(Codes::SUCCESS,$change_data);
     }
 
     /**
      * 获取某张受版本控制的数据表中，指定版本区间段的变更数据，取闭区间段
      * @param $table_name
-     * @param null $old_version_code    为空则为起始版本
-     * @param null $new_version_code    为空则为最新版本
+     * @param int $old_version_code     为空则为起始版本
+     * @param int $new_version_code     为空则为最新版本
      * @return bool|mixed               获取成功则返回数组数据，失败返回false
      */
-    public static function getOneVersionTableSomeData($table_name,$old_version_code = null,$new_version_code = null){
+    public static function getOneVersionTableData($table_name,$old_version_code = null,$new_version_code = null){
         if($old_version_code == null) $old_version_code = 0;
         if($new_version_code == null){
             //获取数据表版本信息
@@ -72,7 +72,7 @@ class TableVersionChanges extends Model {
         $data = DB::table($table_name)->whereIn('id',$table_ids)->get();
         if(!$data) return false;
 
-        return CommonTools::object_to_array($data);
+        return Tool::objectToArray($data);
     }
 
     /**
@@ -86,7 +86,7 @@ class TableVersionChanges extends Model {
         $bases = [];
         foreach($codes as $v){
             $one = DB::table($v['table_name'])->get();
-            $bases[$v['table_name']] = CommonTools::object_to_array($one);
+            $bases[$v['table_name']] = Tool::objectToArray($one);
         }
         return $bases;
     }
@@ -111,8 +111,8 @@ class TableVersionChanges extends Model {
      * @return mixed
      */
     public static function getOnePrivateTableData($table_name){
-        $data = DB::table($table_name)->whereIn('owner_id',[0,Auth::user()->id])->get();
-        return CommonTools::object_to_array($data);
+        $data = DB::table($table_name)->whereIn('owner_id',Auth::user()->id)->get();
+        return Tool::objectToArray($data);
     }
 
     /**

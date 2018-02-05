@@ -16,7 +16,7 @@ class Codes {
         SUCCESS                 =   0,          //请求成功
         FAIL                    =   1,          //请求失败
 
-        //==================公共错误=====================
+        //==================用户级错误=====================
 
         PARAMS_ERROR                        =   100001,         //参数错误
         NAME_OR_PASSWORD_ERROR              =   100002,         //用户不存在或者密码错误
@@ -25,13 +25,21 @@ class Codes {
         CANNOT_SEND_EMAIL_WITHIN_TIME       =   100005,         //单位时间内不能多次发送邮件
         VERIFICATION_CODE_INVALID_OR_ERROR  =   100006,         //验证码失效或错误，请重试获取验证码
         UNKNOWN_ERROR                       =   100007,         //未知错误，请联系管理员
-        LACK_UNIQUE_ID                      =   100008          //缺少用户唯一标识
+        LACK_UNIQUE_ID                      =   100008,         //缺少用户唯一标识
+
+        //==================代码级错误=====================
+
+        FUNCTION_NOT_EXISTS                 =   200001,         //方法不存在
+        KEY_WRONGFUL                        =   200002,         //键不合法
+        SOME_DATA_GET_FAIL                  =   200003          //部分数据获取失败
     ;
 
     public static $MSG = [
 
         self::SUCCESS           =>  '请求成功',
         self::FAIL              =>  '请求失败',
+
+        //==================用户级错误=====================
 
         self::PARAMS_ERROR                          =>  '参数错误',
         self::NAME_OR_PASSWORD_ERROR                =>  '用户不存在或者密码错误',
@@ -41,5 +49,11 @@ class Codes {
         self::VERIFICATION_CODE_INVALID_OR_ERROR    =>  '验证码失效或错误，请重试获取验证码',
         self::UNKNOWN_ERROR                         =>  '未知错误，请联系管理员',
         self::LACK_UNIQUE_ID                        =>  '缺少用户唯一标识',
+
+        //==================代码级错误=====================
+
+        self::FUNCTION_NOT_EXISTS                   =>  '方法不存在',
+        self::KEY_WRONGFUL                          =>  '键不合法',
+        self::SOME_DATA_GET_FAIL                    =>  '部分数据获取失败',
     ];
 }
